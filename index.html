@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Screen</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    button {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      background-color: #e0e0e0;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>Home Screen</h1>
+
+  <div class="button-container">
+    <button data-page="login">Go to Login</button>
+    <button data-page="registration">Go to Register</button>
+    <button data-page="event_upload">Go to Event Upload</button>
+    <button data-page="faculty_signup">Go to Faculty Signup</button>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    // Add click listeners to buttons
+    document.querySelectorAll('button[data-page]').forEach(button => {
+      button.addEventListener('click', () => {
+        const page = button.getAttribute('data-page');
+        ipcRenderer.send('navigate', page); // Send navigation event to main process
+      });
+    });
+  </script>
+</body>
+</html>

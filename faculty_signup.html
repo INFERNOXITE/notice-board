@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faculty Signup</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .back-button {
+      background-color: #28a745;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .back-button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Faculty Signup</h1>
+    <form>
+      <label for="facultyName">Faculty Name:</label>
+      <input type="text" id="facultyName" name="facultyName" required>
+
+      <label for="department">Department:</label>
+      <input type="text" id="department" name="department" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Sign In</button>
+    </form>
+
+    <button class="back-button" id="go-back-home">Go Back to Home</button>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    // Event listener to go back to home page
+    document.getElementById('go-back-home').addEventListener('click', () => {
+        ipcRenderer.send('navigate', 'index');
+    });
+  </script>
+</body>
+</html>
